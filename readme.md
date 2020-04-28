@@ -1,3 +1,3 @@
 # Talky
 
-A WebRTC and React base streaming application
+A WebRTC and React based streaming application
