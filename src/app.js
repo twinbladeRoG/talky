@@ -23,7 +23,6 @@ app.use(express.static(path.join(__dirname, '../public')));
 
 const server = http.createServer(app);
 const io = socketio(server);
-
 app.use(errorHandler);
 
 let users = [];

@@ -39,7 +39,8 @@ const Receiver = () => {
       return history.push("/");
     }
 
-    socket.current = io(":8000/", {
+    console.log("Opening socket on port:", process.env.REACT_APP_SOCKET_PORT);
+    socket.current = io(`:${process.env.REACT_APP_SOCKET_PORT}/`, {
       query: {
         name: user.name,
         type: user.type
