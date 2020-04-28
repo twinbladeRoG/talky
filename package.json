@@ -6,7 +6,7 @@
   "scripts": {
     "start": "nodemon",
     "start:client": "cd client/ && yarn start",
-    "build": "rm -rf public && cd client/ && yarn build && mv build/ ../public"
+    "build": "rm -rf public && yarn && cd client/ && yarn && yarn build && mv build/ ../public"
   },
   "author": "Sohan Dutta",
   "license": "MIT",
