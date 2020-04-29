@@ -11,8 +11,8 @@
     "start": "node ./src/app.js",
     "start:client": "cd client/ && yarn start",
     "watch": "nodemon",
-    "heroku-prebuild": "yarn && cd client && yarn",
-    "build": "cd client && yarn add --force node-sass && yarn build"
+    "heroku-prebuild": "yarn && cd client && yarn && yarn add --force node-sass",
+    "build": "cd client && yarn build"
   },
   "author": "Sohan Dutta",
   "license": "MIT",

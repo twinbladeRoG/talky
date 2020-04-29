@@ -35,6 +35,8 @@ const Broadcast = () => {
       return history.push("/");
     }
 
+    console.log('REACT_APP_SOCKET_PORT', process.env.REACT_APP_SOCKET_PORT)
+    console.log('env PORT', process.env.PORT )
     const PORT = process.env.REACT_APP_SOCKET_PORT || process.env.PORT || 8000;
     console.log("Opening socket on port:", PORT);
     socket.current = io(`:${PORT}/`, {
