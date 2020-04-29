@@ -11,9 +11,8 @@
     "start": "node ./src/app.js",
     "start:client": "cd client/ && yarn start",
     "watch": "nodemon",
-    "heroku-prebuild": "cd client && yarn",
-    "build": "cd client && yarn build",
-    "heroku-postbuild": "rm -rf public && mkdir public && mv client/build/* public"
+    "heroku-prebuild": "yarn && cd client && yarn",
+    "build": "cd client && yarn build"
   },
   "author": "Sohan Dutta",
   "license": "MIT",

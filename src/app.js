@@ -19,7 +19,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(morgan('combined', { stream: logger.stream }));
 console.log(path.join(__dirname, '../public'));
-app.use(express.static(path.join(__dirname, '../public')));
+app.use(express.static(path.join(__dirname, '../client', 'build')));
 
 const server = http.createServer(app);
 const io = socketio(server);
