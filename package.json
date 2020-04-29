@@ -3,9 +3,13 @@
   "version": "1.0.0",
   "description": "",
   "main": "src/app.js",
+  "engines": {
+    "node": "12.x"
+  },
   "scripts": {
-    "start": "nodemon",
+    "start": "node ./src/app.js",
     "start:client": "cd client/ && yarn start",
+    "watch": "nodemon",
     "build": "rm -rf public && yarn && cd client/ && yarn && yarn build && mv build/ ../public"
   },
   "author": "Sohan Dutta",
