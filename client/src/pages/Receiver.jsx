@@ -78,7 +78,18 @@ const Receiver = () => {
   const onAccept = caller => {
     const peer = new Peer({
       initiator: false,
-      trickle: false
+      trickle: false,
+      config: {
+        iceServers: [
+          { urls: "stun:stun.l.google.com:19302" },
+          { urls: "stun:global.stun.twilio.com:3478?transport=udp" },
+          {
+            url: "turn:numb.viagenie.ca",
+            credential: "LPark11!!",
+            username: "sohan.dutta11@gmail.com"
+          }
+        ]
+      }
       // stream: stream
     });
 

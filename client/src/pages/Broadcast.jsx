@@ -83,7 +83,18 @@ const Broadcast = () => {
     const peer = new Peer({
       initiator: true,
       trickle: false,
-      stream: stream
+      stream: stream,
+      config: {
+        iceServers: [
+          { urls: "stun:stun.l.google.com:19302" },
+          { urls: "stun:global.stun.twilio.com:3478?transport=udp" },
+          {
+            url: "turn:numb.viagenie.ca",
+            credential: "LPark11!!",
+            username: "sohan.dutta11@gmail.com"
+          }
+        ]
+      }
     });
 
     peer.on("signal", data => {
