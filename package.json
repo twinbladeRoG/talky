@@ -12,7 +12,7 @@
     "start:client": "cd client/ && yarn start",
     "watch": "nodemon",
     "heroku-prebuild": "yarn && cd client && yarn",
-    "build": "cd client && yarn build"
+    "build": "cd client && yarn add --force node-sass && yarn build"
   },
   "author": "Sohan Dutta",
   "license": "MIT",
