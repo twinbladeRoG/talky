@@ -9,10 +9,10 @@
   },
   "scripts": {
     "start": "node ./src/app.js",
-    "start:client": "cd client/ && yarn start",
+    "start:client": "yarn --cwd client start",
     "watch": "nodemon",
-    "heroku-prebuild": "yarn && cd client && yarn && yarn add --force node-sass",
-    "build": "cd client && yarn build"
+    "heroku-prebuild": "yarn && yarn --cwd client && yarn --cwd client add --force node-sass",
+    "build": "yarn --cwd client build"
   },
   "author": "Sohan Dutta",
   "license": "MIT",
