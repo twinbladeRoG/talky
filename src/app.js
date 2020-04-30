@@ -4,7 +4,6 @@ const dotenv = require('dotenv');
 const chalk = require('chalk');
 const morgan = require('morgan');
 const socketio = require('socket.io');
-const path = require('path');
 const { v4: uuid } = require('uuid');
 // midddlewares
 const logger = require('./middlewares/logger');
@@ -18,8 +17,6 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(morgan('combined', { stream: logger.stream }));
-console.log(path.join(__dirname, '../public'));
-app.use(express.static(path.join(__dirname, '../client', 'build')));
 
 const server = http.createServer(app);
 const io = socketio(server);
