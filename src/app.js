@@ -25,24 +25,37 @@ app.use(errorHandler);
 let users = [];
 
 io.use((socket, next) => {
-  const { name, type } = socket.handshake.query;
+  const { name, room } = socket.handshake.query;
   console.log(
-    `> New user connected: ${chalk.blue(name)} ${chalk.black.bgBlue(
-      type
+    `> New user connected: ${chalk.blue(name)} ${chalk.cyan(
+      room
     )} ${chalk.green(socket.id)}`
   );
-  const user = { id: uuid(), name, type, socketID: socket.id };
+  const user = {
+    id: uuid(),
+    name,
+    room,
+    socketID: socket.id
+  };
   socket.user = user;
+  socket.room = room;
   return next();
 });
 
 io.on('connection', socket => {
-  const user = socket.user;
-  users.push(user);
-  console.log(user.name, user.id, user.socketID);
-  socket.emit('connected', socket.user);
+  users.push(socket.user);
+  socket.join(socket.room, () => {
+    socket
+      .in(socket.room)
+      .emit('join-room', `${socket.user.name} has joined ${socket.room}`);
+    console.log(socket.rooms);
+    io.in(socket.room).emit(
+      'users',
+      users.filter(({ room }) => room === socket.room)
+    );
+  });
 
-  io.emit('users', users);
+  socket.emit('connected', socket.user);
 
   socket.on('send-signal', res => {
     console.log('> Signal received from: ', res.from);
@@ -57,9 +70,9 @@ io.on('connection', socket => {
 
   socket.on('disconnect', res => {
     console.log('> Disconnect: ', socket.id);
-    console.log(res);
+    // console.log(res);
     users = users.filter(user => user.socketID !== socket.id);
-    console.log('> Users after disconnect', users);
+    // console.log('> Users after disconnect', users);
     io.emit('users', users);
   });
 });
